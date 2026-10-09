@@ -40,7 +40,16 @@ jobs:
   install-test:
     needs: build
     runs-on: ubuntu-24.04
-    container: debian:trixie
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Debian 13 has PySide6 but no python3-sounddevice (no monitoring).
+          - image: debian:trixie
+            extra: python3-pyside6.qtwidgets
+          - image: ubuntu:26.04
+            extra: python3-pyside6.qtwidgets python3-sounddevice
+    container: ${{ matrix.image }}
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -51,7 +60,7 @@ jobs:
       - name: Install the Debian package
         run: |
           apt-get update
-          apt-get install -y ./dist/*.deb python3-sounddevice python3-pyside6.qtwidgets
+          apt-get install -y ./dist/*.deb ${{ matrix.extra }}
 
       - name: Smoke test
         env:

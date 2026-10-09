@@ -74,16 +74,17 @@ streaming interface is enabled. The details are in
 The [releases](https://github.com/bytewarrior/pshx500-linux/releases) contain
 a Debian package and a Python wheel.
 
-**Debian 13, Ubuntu 25.04 and later** have all dependencies as packages:
+**Debian 13 and Ubuntu 25.04 or later** have the dependencies as packages:
 
 ```bash
 sudo apt install ./pshx500_1.0.0_all.deb
 ```
 
 This installs `pshx500`, `pshx500-gui` with a menu entry, and the udev rule.
-Monitoring and the GUI come with the recommended packages
-`python3-sounddevice` and `python3-pyside6.qtwidgets`. Plug the turntable in
-again after the installation.
+The GUI comes with the recommended package `python3-pyside6.qtwidgets`.
+Monitoring needs `python3-sounddevice`, which only Debian 14 and Ubuntu 26.04
+or later have; without it, everything but monitoring works. Plug the turntable
+in again after the installation.
 
 **Ubuntu 24.04, Linux Mint 22 and other distributions** lack some of these
 packages. Install the wheel with [pipx](https://pipx.pypa.io) and the udev
