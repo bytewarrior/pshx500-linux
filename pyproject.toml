@@ -1,0 +1,42 @@
+[project]
+name = "pshx500"
+version = "1.0.0"
+description = "Linux recording software for the Sony PS-HX500 USB turntable (PCM and DSD, via libusb)"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "bytewarrior", email = "1134981+bytewarrior@users.noreply.github.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "libusb1>=3.0",
+    "numpy>=1.24",
+]
+classifiers = [
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Sound/Audio :: Capture/Recording",
+]
+
+[project.optional-dependencies]
+monitor = ["sounddevice>=0.4"]
+gui = ["PySide6>=6.5", "sounddevice>=0.4"]
+
+[project.urls]
+Homepage = "https://github.com/bytewarrior/pshx500-linux"
+Issues = "https://github.com/bytewarrior/pshx500-linux/issues"
+
+[project.scripts]
+pshx500 = "pshx500.cli:main"
+
+[project.gui-scripts]
+pshx500-gui = "pshx500.gui.app:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pshx500*"]
+
+[tool.setuptools.package-data]
+pshx500 = ["app_icon.png"]

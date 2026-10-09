@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=PS-HX500 Recorder
+GenericName=Turntable Recorder
+Comment=Record from the Sony PS-HX500 USB turntable (PCM and DSD)
+Exec=pshx500-gui
+Icon=pshx500
+Terminal=false
+Categories=AudioVideo;Audio;Recorder;
+Keywords=turntable;vinyl;record;DSD;

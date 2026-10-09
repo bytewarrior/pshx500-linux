@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+
+# Packages (packaging/build-packages.sh)
+build-pkg/
+dist/
+
+# Recordings
+*.wav
+*.dsf
+
+# Editor and OS cruft
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/

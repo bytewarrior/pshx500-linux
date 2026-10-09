@@ -1,0 +1,11 @@
+# Sony PS-HX500 (054c:0baa): USB access for pshx500 without root.
+#
+# The software talks to the device directly through libusb (snd-usb-audio
+# cannot drive it). "uaccess" gives the logged-in desktop user access; the
+# plugdev group covers headless and remote sessions.
+#
+# Installed by the Debian package. Manual installation:
+#   sudo cp 70-pshx500.rules /etc/udev/rules.d/
+#   sudo udevadm control --reload && sudo udevadm trigger
+#
+SUBSYSTEM=="usb", ATTR{idVendor}=="054c", ATTR{idProduct}=="0baa", MODE="0660", GROUP="plugdev", TAG+="uaccess"

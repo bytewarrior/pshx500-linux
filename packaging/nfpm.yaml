@@ -1,0 +1,59 @@
+# Debian package of pshx500. build-packages.sh replaces @VERSION@ and @STAGE@.
+name: pshx500
+arch: all
+platform: linux
+version: "@VERSION@"
+section: sound
+priority: optional
+maintainer: "bytewarrior <1134981+bytewarrior@users.noreply.github.com>"
+description: |
+  Recording software for the Sony PS-HX500 USB turntable
+  pshx500 records from the Sony PS-HX500 under Linux, where the kernel's
+  USB audio driver cannot use it: PCM at 44.1 to 192 kHz with 16 or 24 bit
+  into WAV files, and DSD64/DSD128 into DSF files, with a level meter and
+  drift-compensated monitoring. Includes the command line tool pshx500 and
+  the graphical recorder pshx500-gui.
+vendor: "pshx500-linux"
+homepage: https://github.com/bytewarrior/pshx500-linux
+license: MIT
+
+depends:
+  - python3 (>= 3.10)
+  - python3-numpy
+  - python3-usb1 (>= 3.0)
+recommends:
+  # monitoring and the GUI; the command line tool records without them
+  - python3-sounddevice
+  - python3-pyside6.qtwidgets
+
+contents:
+  - src: "@STAGE@/pshx500"
+    dst: /usr/lib/pshx500/pshx500
+    type: tree
+  - src: packaging/bin/pshx500
+    dst: /usr/bin/pshx500
+    file_info:
+      mode: 0755
+  - src: packaging/bin/pshx500-gui
+    dst: /usr/bin/pshx500-gui
+    file_info:
+      mode: 0755
+  - src: packaging/udev/70-pshx500.rules
+    dst: /usr/lib/udev/rules.d/70-pshx500.rules
+    file_info:
+      mode: 0644
+  - src: packaging/pshx500.desktop
+    dst: /usr/share/applications/pshx500.desktop
+    file_info:
+      mode: 0644
+  - src: pshx500/app_icon.png
+    dst: /usr/share/icons/hicolor/256x256/apps/pshx500.png
+    file_info:
+      mode: 0644
+  - src: LICENSE
+    dst: /usr/share/doc/pshx500/copyright
+    file_info:
+      mode: 0644
+
+scripts:
+  postinstall: packaging/postinst.sh

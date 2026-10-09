@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+# Launcher installed by the Debian package: the pshx500 package lives in
+# /usr/lib/pshx500, independent of the distribution's site-packages layout.
+import sys
+sys.path.insert(0, "/usr/lib/pshx500")
+from pshx500.gui.app import main
+sys.exit(main())
